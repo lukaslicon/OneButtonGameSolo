@@ -1,4 +1,4 @@
-title = " SPEED BINARY";
+title = " SPEED BINARY ";
 description = `
 [TAP]  ZERO
 [HOLD] ONE
