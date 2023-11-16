@@ -1,4 +1,4 @@
-title = " NUMBER CRUNCHER";
+title = " SPEED BINARY";
 
 description = `
 [TAP]  ZERO
