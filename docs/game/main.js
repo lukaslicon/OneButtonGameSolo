@@ -1,11 +1,8 @@
 title = " SPEED BINARY";
-
 description = `
 [TAP]  ZERO
 [HOLD] ONE
 `;
-
-
 characters = []; // for sprites (none atm)
 
 const G = {
@@ -18,7 +15,6 @@ options = {
   isPlayingBgm: true,
   theme: "crt"
 };
-
 // constants
 const questionTime = 600;
 const holdTime = 10;
