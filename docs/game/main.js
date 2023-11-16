@@ -1,4 +1,4 @@
-title = "NUMBER CRUNCHER";
+title = " NUMBER CRUNCHER";
 
 description = `
 [TAP]  ZERO
@@ -129,11 +129,11 @@ function update() {
   text(binaryArrayToStr(answer), vec(G.WIDTH / 4, G.HEIGHT / 2)); // input so far
 
   color("red");
-  text("Cancel", vec(G.WIDTH / 2 - 16, G.HEIGHT * 39 / 40)); // cancel text
+  text("Cancel", vec(G.WIDTH / 2 - 16, G.HEIGHT * 38 / 40)); // cancel text
 
   if (isPressing) {
     // indicator that you've held long enough
-    if (input.pos.y > G.HEIGHT * 3 / 4) {
+    if (input.pos.y > G.HEIGHT * 9 / 10) {
       color("light_red");
       bar(input.pos.x, input.pos.y, 14, 3, Math.PI / 4);
       bar(input.pos.x, input.pos.y, 14, 3, -Math.PI / 4);
