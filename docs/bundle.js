@@ -2931,7 +2931,7 @@ image-rendering: pixelated;
       if (isReplaying) {
           return;
       }
-      terminal.print(gameOverText, Math.floor((terminalSize.x - gameOverText.length) / 2), Math.floor(terminalSize.y / 2));
+      terminal.print(gameOverText, Math.floor((terminalSize.x - gameOverText.length) / 2), Math.floor(terminalSize.y / 2.5));
       terminal.draw();
   }
   function initRewind() {
