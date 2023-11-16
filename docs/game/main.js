@@ -1,8 +1,8 @@
-title = "Number Cruncher";
+title = " NUMBER CRUNCHER";
 
 description = `
-[Tap]  Zero
-[Hold] One
+[TAP]  ZERO
+[HOLD] ONE
 `;
 
 characters = []; // for sprites (none atm)
@@ -22,6 +22,14 @@ options = {
 const questionTime = 600;
 const maxTime = 2000;
 const holdTime = 10;
+const maxHealth = 100;
+const timeRemainingBarHeight = 5;
+const timeRemainingBarX = 10;
+const timeRemainingBarY = G.HEIGHT - 20;
+const healthBarWidth = 100; 
+const healthBarHeight = 10;
+const healthBarX = (G.WIDTH - healthBarWidth) / 2;
+const healthBarY = G.HEIGHT - healthBarHeight - 10;
 
 // variables
 let isPressing;		// checking if button is held
@@ -32,6 +40,8 @@ let answer; 		// player input
 let correctAnswer;	// what input should match
 let binaryTxt;		// display text in binary
 let b10Txt;			// display text in base 10
+let health = maxHealth;
+let timeRemainingBarWidth = 0;
 
 // difficulty = digits
 function binaryArrayToStr(arr) { // function for printing arrays without commas
@@ -77,7 +87,14 @@ function update() {
 		console.log(correctAnswer);
 		nextQ = false;
 	}
+    // Draw Health Bar at the bottom of the screen
 
+    color("red");
+    rect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+    color("green");
+    rect(healthBarX, healthBarY, (health / maxHealth) * healthBarWidth, healthBarHeight);
+    
+	//timeout bar
 	color("red");
 	line(vec(0, 10), vec(timeout*100/questionTime, 10)); // timeout bar
 	text(String(floor(timeout*10/60)/10), vec(G.WIDTH/2-15, 4)); // timeout number
@@ -92,7 +109,7 @@ function update() {
 
 	color("red");
 	line(vec(0, G.HEIGHT*3/4), vec(G.WIDTH, G.HEIGHT*3/4)); // separator line for cancel area
-	text("Cancel", vec(G.WIDTH/2-16, G.HEIGHT*7/8)); // cancel text
+	text("Cancel", vec(G.WIDTH/2-16, G.HEIGHT*39/40)); // cancel text
 
 	if(isPressing) { // indicator that youve held long enough
 		if(input.pos.y > G.HEIGHT*3/4) {
@@ -112,7 +129,16 @@ function update() {
 			}
 		}
 	}
+	//health
 
+	if (timeout <= 0) {
+		// Reduce health if the prompt times out
+		health -= 5; // Decrease health by a certain value (adjust as needed)
+		if (health <= 0) {
+			end(); // Game over
+		}
+	}
+	
 	// Input Handling
 	if (input.isJustPressed) {
 		isPressing = true;
@@ -159,6 +185,11 @@ function update() {
 			play("powerUp");
 			score += timeout/100;
 		} else {
+			// Decrement health when the answer is incorrect
+			health -= 25; // Decrease health by a certain value (adjust as needed)
+			if (health <= 0) {
+				end(); // Game over
+			}			
 			play("explosion");
 			console.log("YUH OH!");
 		}
